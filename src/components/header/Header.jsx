@@ -18,31 +18,29 @@ const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  useEffect(()=>{
-window.scrollTo(0,0)
-  },[location])
-  const controlNavbar =() =>{
-// console.log(window.scrollY);
-if(window.scrollY >200){
-  if(window.scrollY > lastScrollY && !mobileMenu){
-    setShow("hide")
-  }
-  else{
-    setShow("show")
-  }
-}else{
-  setShow("top");
-}
-setLastScrollY(window.scrollY);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+  const controlNavbar = () => {
+    // console.log(window.scrollY);
+    if (window.scrollY > 200) {
+      if (window.scrollY > lastScrollY && !mobileMenu) {
+        setShow("hide");
+      } else {
+        setShow("show");
+      }
+    } else {
+      setShow("top");
+    }
+    setLastScrollY(window.scrollY);
   };
 
-  useEffect (()=>{
-  
-    window.addEventListener("scroll",controlNavbar)
-    return ()=>{
-      window.removeEventListener("scroll",controlNavbar)
-    }
-  },[lastScrollY])
+  useEffect(() => {
+    window.addEventListener("scroll", controlNavbar);
+    return () => {
+      window.removeEventListener("scroll", controlNavbar);
+    };
+  }, [lastScrollY]);
   const openSearch = () => {
     setMobileMenu(false);
     setShowSearch(true);
@@ -71,7 +69,7 @@ setLastScrollY(window.scrollY);
   return (
     <header className={`header ${mobileMenu ? "mobileView" : ""} ${show}`}>
       <ContentWrapper>
-        <div className="logo">
+        <div className="logo" onClick={()=>navigate("/")}>
           <img src={logo} alt="" />
         </div>
         <ul className="menuItems">
@@ -92,7 +90,7 @@ setLastScrollY(window.scrollY);
             TV Shows
           </li>
           <li className="menuItem">
-            <HiOutlineSearch  onClick={openSearch} />
+            <HiOutlineSearch onClick={openSearch} />
           </li>
         </ul>
         <div className="mobileMenuItems">
