@@ -14,7 +14,7 @@ const [query,setQuery] = useState("");
 const navigate = useNavigate();
 
 const { url } = useSelector((state)=>state.home)
-console.log(url);
+
 
 const {data , loading} = useFetch("/movie/upcoming")
 
